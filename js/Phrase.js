@@ -16,11 +16,36 @@ class Phrase {
             listItem.innerText = character;
             phraseSection.appendChild(listItem);
             if ( character === ' ') {
-                listItem.className = 'space';
+                listItem.className = 'hide space';
             } else {
                 listItem.className = `hide letter ${character}`;
             }
         });
     };
+
+        /**
+        * Checks if passed letter is in phrase
+        * @param (string) letter - Letter to check
+        */
+     checkLetter(letter) {
+        return this.phrase.includes(letter);
+    };
+
+        /**
+        * Displays passed letter on screen after a match is found
+        * @param (string) letter - Letter to display
+        */
+    showMatchedLetter(letter) {
+        const buttons = document.getElementsByClassName('key');
+
+        for (let i = 0; i < buttons.length; i++){
+
+            if ( letter === buttons[i].innerHTML ) {
+                buttons[i].removeClass('hide');
+                buttons[i].addClass('show');
+            }
+        };
         
-}
+    };
+                
+    }
