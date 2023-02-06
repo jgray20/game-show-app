@@ -37,8 +37,10 @@ class Game {
         won
         */
     checkForWin() {
-        const hidden = document.getElementsByClassName('hide');
-        if (hidden.length === 0) {
+        const letters = document.getElementsByClassName('letter');
+        const show = document.getElementsByClassName('show');
+
+        if(letters.length === show.length){
             return true;
         } else {
             return false;
@@ -51,20 +53,17 @@ class Game {
          * Checks if players has remaining lives and ends game if player is out
          */
     removeLife() {
-        this.missed += 1;
+        const tries = document.querySelectorAll('.tries img');
 
-        const lives = [];
-        const heartImages = document.querySelectorAll('.tries img');
-        for (let i = 0; i < heartImages.length; i++){
-            lives.push(heartImages[i]);
+        for (let i = 0; i < tries.length; i++){
+            tries[this.missed].src = 'images/lostHeart.png';
         }
-        const liveHeart = lives.filter( life => life.src = 'images/liveHeart.png');
-        liveHeart[0].src = 'images/lostHeart.png';
+
+        this.missed += 1;
 
         if (this.missed === 5) {
             this.gameOver();
-        } 
-
+        }
     };
 
         /**
@@ -81,11 +80,17 @@ class Game {
             overlay.classList.remove('start');
             overlay.classList.add('win');
         } else {
-            message.innerText = 'You Lose';
+            message.innerText = 'Better luck next time!';
             overlay.classList.remove('start');
             overlay.classList.add('lose');
         }
     };
-
-    handleInteraction() {};
+        /**
+        * Handles onscreen keyboard button clicks
+        * @param (HTMLButtonElement) button - The clicked button element
+        */
+    handleInteraction(button) {
+        
+        
+    };
 }

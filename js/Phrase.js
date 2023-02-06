@@ -36,13 +36,12 @@ class Phrase {
         * @param (string) letter - Letter to display
         */
     showMatchedLetter(letter) {
-        const buttons = document.getElementsByClassName('key');
+        const phraseItems = document.querySelectorAll('#phrase li');
 
-        for (let i = 0; i < buttons.length; i++){
-
-            if ( letter === buttons[i].innerHTML ) {
-                buttons[i].removeClass('hide');
-                buttons[i].addClass('show');
+        for (let i = 0; i < phraseItems.length; i++){
+            if (letter === phraseItems[i].innerHTML) {
+                phraseItems[i].classList.remove('hide');
+                phraseItems[i].classList.add('show');
             }
         };
         
