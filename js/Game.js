@@ -15,16 +15,6 @@ class Game {
     }
 
         /**
-         * Selects random phrase from phrases property
-         *  @return {Object} Phrase object chosen should be used
-         */
-
-    getRandomPhrase(){
-        return this.phrases[ Math.floor( Math.random() * this.phrases.length ) ];
-    }
-
-
-        /**
          * Begins game by selecting a random phrase and displaying it to user
          */
 
@@ -33,6 +23,15 @@ class Game {
         overlay.style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
+    }
+
+        /**
+         * Selects random phrase from phrases property
+         *  @return {Object} Phrase object chosen should be used
+         */
+
+    getRandomPhrase(){
+        return this.phrases[ Math.floor( Math.random() * this.phrases.length ) ];
     }
 
         /**
@@ -57,6 +56,7 @@ class Game {
          * Removes a life from the scoreboard
          * Checks if players has remaining lives and ends game if player is out
          */
+
     removeLife() {
         const tries = document.querySelectorAll('.tries img');
 
@@ -99,6 +99,7 @@ class Game {
         * Handles onscreen keyboard button clicks
         * @param (HTMLButtonElement) button - The clicked button element
         */
+
     handleInteraction(button) {
         button.disabled = true;
         
@@ -121,30 +122,28 @@ class Game {
          * Restarts the game after win/loss
          */
 
-        restartGame() {
-            this.missed = 0;
-            
-            const phrase = document.querySelector('#phrase ul');
-            const items = document.querySelectorAll('#phrase li')
-    
-            const keyboard = document.querySelectorAll('#qwerty button');
-    
-            const tries = document.querySelectorAll('.tries img');
-    
-            for (let i = 0; i < items.length; i++) {
-                phrase.removeChild(items[i]);
-            }
-    
-            for (let i = 0; i < keyboard.length; i++) {
-                keyboard[i].disabled = false;
-                keyboard[i].className = 'key';
-            }
-    
-            for (let i = 0; i < tries.length; i++){
-                tries[i].setAttribute('src', 'images/liveHeart.png');
-            }
+    restartGame() {
+        this.missed = 0;
 
-            
+        const phrase = document.querySelector('#phrase ul');
+        const items = document.querySelectorAll('#phrase li')
     
+        const keyboard = document.querySelectorAll('#qwerty button');
+    
+        const tries = document.querySelectorAll('.tries img');
+    
+        for (let i = 0; i < items.length; i++) {
+            phrase.removeChild(items[i]);
         }
+    
+        for (let i = 0; i < keyboard.length; i++) {
+             keyboard[i].disabled = false;
+            keyboard[i].className = 'key';
+        }
+    
+        for (let i = 0; i < tries.length; i++){
+            tries[i].setAttribute('src', 'images/liveHeart.png');
+        }
+    }
+    
 }
