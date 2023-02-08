@@ -82,15 +82,18 @@ class Game {
         overlay.style.display = '';
 
         const message = document.getElementById('game-over-message');
+        const button = document.getElementById('btn__reset');
+        button.innerText = 'Play Again';
 
         if ( this.missed < 5 ){
             message.innerText = 'You Win!';
-            overlay.classList.remove('start');
-            overlay.classList.add('win');
+            overlay.className = 'win';
+            document.querySelector('.win').style.backgroundColor = '#ff534a';
         } else {
             message.innerText = 'Better luck next time!';
-            overlay.classList.remove('start');
-            overlay.classList.add('lose');
+            overlay.className = 'lose';
+            document.querySelector('.lose').style.backgroundColor = '#989e8b';
+
         }
 
     };
@@ -145,5 +148,5 @@ class Game {
             tries[i].setAttribute('src', 'images/liveHeart.png');
         }
     }
-    
+
 }
